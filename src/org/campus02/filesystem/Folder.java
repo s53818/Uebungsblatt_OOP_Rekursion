@@ -18,12 +18,17 @@ public class Folder extends FSEntry
     @Override
     public int getSize()
     {
-        return 0;
+        ArrayList<FSEntry> e = entries;
+        if(e.isEmpty())
+        {
+            return 0;
+        }
+        return e.remove(0).getSize() + getSize();
     }
 
     @Override
     public void print()
     {
-
+        System.out.println(entries.get(0).getName());
     }
 }
