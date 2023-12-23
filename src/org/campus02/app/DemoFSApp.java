@@ -16,7 +16,8 @@ public class DemoFSApp
         folder.addEntry(f2);
         folder.addEntry(f3);
 
-        //System.out.println(folder.getSize());
+        folder.print();
+        System.out.println(folder.getSize());
         folder.print();
     }
 }

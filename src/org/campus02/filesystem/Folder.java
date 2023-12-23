@@ -18,17 +18,31 @@ public class Folder extends FSEntry
     @Override
     public int getSize()
     {
-        ArrayList<FSEntry> e = entries;
-        if(e.isEmpty())
+        ArrayList<FSEntry> e = new ArrayList<>(entries);
+        return sumSizeRecursive(e);
+    }
+    private int sumSizeRecursive(ArrayList<FSEntry> entries)
+    {
+        if(entries.isEmpty())
         {
             return 0;
         }
-        return e.remove(0).getSize() + getSize();
+        return entries.remove(0).getSize() + sumSizeRecursive(entries);
     }
-
     @Override
     public void print()
     {
-        System.out.println(entries.get(0).getName());
+        ArrayList<FSEntry> e = new ArrayList<>(entries);
+        printRecursive(e);
+    }
+
+    private void printRecursive(ArrayList<FSEntry> e)
+    {
+        if(e.isEmpty())
+        {
+            return;
+        }
+        System.out.println(e.remove(0).getName());
+        printRecursive(e);
     }
 }
